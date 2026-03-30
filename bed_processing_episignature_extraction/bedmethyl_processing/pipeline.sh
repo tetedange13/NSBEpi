@@ -18,5 +18,5 @@ mkdir -p "$output_path"
 for file in "$input_path"/*.bedmethyl.gz; do
     outName=$(basename "$file" .bedmethyl.gz)
     echo "Removing extra cols from '$outName'..."
-    zcat "$file" | awk -F"\t" '$7=="m"' | cut -f 1-11 | sed 's/^chr//' > "$output_path"/"${outName}".bed
+    zcat "$file" | awk -F"\t" '$4=="m"' | cut -f 1-11 | sed 's/^chr//' > "$output_path"/"${outName}".bed
 done
