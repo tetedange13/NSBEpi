@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -euo pipefail
+#set -x  # DEBUG
+
 # Checking if bedtools is installed
 if ! command -v bedtools &> /dev/null; then
     echo "bedtools is not installed. Please install bedtools to run this script."
