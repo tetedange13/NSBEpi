@@ -1,0 +1,13 @@
+# run: conda env create --file environment.yml
+name: NSBEpi
+dependencies:
+- python=3.9.15
+- jupyter
+- pip
+- pip:
+  - pandas<3.0
+  - openpyxl
+  - umap-learn==0.5.4
+  - scikit-learn==1.2.2
+  - seaborn==0.12.2
+  - scipy==1.9.3
