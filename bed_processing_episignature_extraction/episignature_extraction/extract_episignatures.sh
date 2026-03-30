@@ -9,12 +9,12 @@ fi
 
 
 # path to bed files containing the episignature loci (hg38_episignature_cordinates)
-group1_path=""
-# path to nanopore bedmethyl files
-group2_path=""
+group1_path=/data/work/CHUUMI/felix/data/methyl/NSBEpi/hg38_episignature_cordinates
+# path to nanopore bedmethyl file
+group2_path=/data/work/CHUUMI/felix/data/methyl/NSBEpi/preprocessed_bedmethyl
 
 # Creating the output folder if it doesn't exist
-output_folder="name_out_folder"
+output_folder="extracted_episign"
 mkdir -p "$output_folder"
 
 for file2 in "$group2_path"/*.bed; do
