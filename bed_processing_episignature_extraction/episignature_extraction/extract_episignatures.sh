@@ -40,6 +40,7 @@ done > extract_episign_cmds.sh
 
 # Run in parallel:
 parallel < extract_episign_cmds.sh
+rm extract_episign_cmds.sh
 
 
 echo "Intersections completed!"
