@@ -1,9 +1,14 @@
 # run: conda env create --file environment.yml
 name: NSBEpi
+channels:
+  - conda-forge
+  - bioconda
 dependencies:
 - python=3.9.15
-- jupyter
 - pip
+- jupyter
+- bedtools
+- parallel
 - pip:
   - pandas<3.0
   - openpyxl
