@@ -20,9 +20,9 @@ group2_path=/data/work/CHUUMI/felix/data/methyl/NSBEpi/preprocessed_bedmethyl
 output_folder="extracted_episign"
 mkdir -p "$output_folder"
 
-for file2 in "$group2_path"/*.bed; do
+for file2 in "$group2_path"/*.bed.gz; do
 
-    file2_basename=$(basename "$file2" .bed)
+    file2_basename=$(basename "$file2" .bed.gz)
 
     for file1 in "$group1_path"/*.bed; do
 

@@ -14,9 +14,14 @@ mkdir -p "$output_path"
 # - Filter out '5hmC' marks (otherwise error of 'size index')
 # - Keep only 11 first cols
 # - Remove 'chr' prefix to contig names
+# - Recompr cuz downstream 'bedtools intersect' supports gzipped bed
 #
 for file in "$input_path"/*.bedmethyl.gz; do
     outName=$(basename "$file" .bedmethyl.gz)
     echo "Removing extra cols from '$outName'..."
-    zcat "$file" | awk -F"\t" '$4=="m"' | cut -f 1-11 | sed 's/^chr//' > "$output_path"/"${outName}".bed
+    zcat "$file" |
+        awk -F"\t" '$4=="m"' |
+        cut -f 1-11 |
+        sed 's/^chr//' |
+        gzip -9 > "$output_path"/"${outName}".bed.gz
 done
