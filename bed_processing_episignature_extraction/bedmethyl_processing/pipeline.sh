@@ -1,8 +1,10 @@
 #!/bin/bash
 
+set -euo pipefail  # Bash best practice
+
 preprocess() {
     local file=$1
-    local outputPath=$2
+    local output_path=$2
     local outName=$(basename "$file" .bedmethyl.gz)
     echo "Removing extra cols from '$outName'..."
 
@@ -12,6 +14,7 @@ preprocess() {
         sed 's/^chr//' |
         gzip -9 > "$output_path"/"${outName}".bed.gz
 }
+export -f preprocess
 
 if [ -z "$1" ]; then
   echo "Usage: $0 /path/bedmethyl/dir/"
@@ -30,5 +33,9 @@ mkdir -p "$output_path"
 # - Recompr cuz downstream 'bedtools intersect' supports gzipped bed
 #
 for file in "$input_path"/*.bedmethyl.gz; do
-    preprocess "$file" "$outputPath"
-done
+    echo preprocess "$file" "$output_path"
+done > preprocess_cmds.sh
+
+# Run in parallel:
+parallel < preprocess_cmds.sh
+rm preprocess_cmds.sh
