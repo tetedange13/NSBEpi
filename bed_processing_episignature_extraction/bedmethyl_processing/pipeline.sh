@@ -37,5 +37,6 @@ for file in "$input_path"/*.bedmethyl.gz; do
 done > preprocess_cmds.sh
 
 # Run in parallel:
-parallel < preprocess_cmds.sh
+NB_JOBS=8
+parallel --jobs $NB_JOBS < preprocess_cmds.sh
 rm preprocess_cmds.sh
