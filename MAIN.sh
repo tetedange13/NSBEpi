@@ -5,7 +5,7 @@ set -euo pipefail  # Bast best pratice
 #set -x  # DEBUG
 
 
-# 0) Put/symlink all bedmethyl.gz into same dir:
+# 0) cd to NSBEpi repo + put/symlink all bedmethyl.gz into 'input_bedmethyl/' dir:
 #    Use 'combined' one (NSBEpi precise: NON STRAND SPECIFIC)
 
 
@@ -23,7 +23,7 @@ source /home/felix/.local/share/mamba/etc/profile.d/mamba.sh && mamba activate /
 set -u
 
 jupyter nbconvert --to script SVM_read_from_bed.ipynb && \
-        python SVM_read_from_bed.py /data/work/CHUUMI/felix/data/methyl/NSBEpi/extracted_episign && \
+        python SVM_read_from_bed.py extracted_episign && \
 rm SVM_read_from_bed.py
 
 
@@ -34,7 +34,7 @@ jupyter execute --output toto SVM_read_from_bed.ipynb
 # 3-ter) User papermill package
 papermill \
 	SVM_read_from_bed.ipynb toto.json \
-	-p input_folder_path '/data/work/CHUUMI/felix/data/methyl/NSBEpi/extracted_episign' \
+	-p input_folder_path 'extracted_episign' \
 	--stdout-file toto.txt && \
 rm toto.json
 # -> But only 'toto.txt' is interesting, 'toto.json' is all NB outputs
