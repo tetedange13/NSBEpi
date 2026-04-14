@@ -19,7 +19,7 @@ bash bed_processing_episignature_extraction/episignature_extraction/extract_epis
 
 # 3) Convert notebook to python script and run 'script.py'
 set +u
-source /home/felix/.local/share/mamba/etc/profile.d/mamba.sh && mamba activate /home/felix/.local/share/mamba/envs/NSBEpi
+source /home/felix/.local/share/mamba/etc/profile.d/mamba.sh && mamba activate NSBEpi
 set -u
 
 jupyter nbconvert --to script SVM_read_from_bed.ipynb && \
