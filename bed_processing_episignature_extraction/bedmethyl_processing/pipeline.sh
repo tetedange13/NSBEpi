@@ -3,13 +3,22 @@
 set -euo pipefail  # Bash best practice
 
 preprocess() {
+    # Pre-processin steps:
+    # - Decompress
+    # - Filter out '5hmC' marks (otherwise error of 'size index')
+    # - Filter on 'N_valid_cov' threshold
+    # - Keep only 11 first cols
+    # - Remove 'chr' prefix to contig names
+    # - Recompr cuz downstream 'bedtools intersect' supports gzipped bed
+    #
     local file=$1
     local output_path=$2
+    local THRESHOLD=$3
     local outName=$(basename "$file" .bedmethyl.gz)
     echo "Removing extra cols from '$outName'..."
 
     zcat "$file" |
-        awk -F"\t" '$4=="m"' |
+        awk -v thresh=$THRESHOLD -F"\t" '$4=="m" && $10>=thresh' |
         cut -f 1-11 |
         sed 's/^chr//' |
         gzip -9 > "$output_path"/"${outName}".bed.gz
@@ -21,19 +30,17 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+threshold=0
+if [ ! -z "$2" ]; then
+    threshold=$2
+fi
+
 input_path="$1"
 output_path=preprocessed_bedmethyl
 mkdir -p "$output_path"
 
-# Pre-processin steps:
-# - Decompress
-# - Filter out '5hmC' marks (otherwise error of 'size index')
-# - Keep only 11 first cols
-# - Remove 'chr' prefix to contig names
-# - Recompr cuz downstream 'bedtools intersect' supports gzipped bed
-#
 for file in "$input_path"/*.bedmethyl.gz; do
-    echo preprocess "$file" "$output_path"
+    echo preprocess "$file" "$output_path" "$threshold"
 done > preprocess_cmds.sh
 
 # Run in parallel:

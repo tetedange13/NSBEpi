@@ -10,7 +10,7 @@ set -euo pipefail  # Bast best pratice
 
 
 # 1) Use a modified version of './remove_extra_col.sh' to pre-process '.bedmethyl.gz'
-bash bed_processing_episignature_extraction/bedmethyl_processing/pipeline.sh input_bedmethyl/
+bash bed_processing_episignature_extraction/bedmethyl_processing/pipeline.sh input_bedmethyl "$1"
 
 
 # 2) Extract episign for each bedmethyl (against all 'hg38_episignature_cordinates/*')
@@ -38,3 +38,13 @@ papermill \
 	--stdout-file toto.txt && \
 rm toto.json
 # -> But only 'toto.txt' is interesting, 'toto.json' is all NB outputs
+
+
+# Post-processing of multiple nohup
+ls -d *.out |
+	sort --version |
+	parallel --keep-order \
+		"grep 'barcode' {} | grep -v Removing | cut -f1,2 | csvtk transpose -Ht | csvtk mutate2 -t -n condition -e \'{}\' --at 1" |
+	awk 'NR==1 || $0!~/barcode/' |
+	sed -e 's/barcode04_//g' -e 's/modkit_pileup//g' |
+	tsvtk pretty
