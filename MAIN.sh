@@ -42,9 +42,13 @@ rm toto.json
 
 # Post-processing of multiple nohup
 ls -d *.out |
-	sort --version |
+	sort --version-sort |
 	parallel --keep-order \
 		"grep 'barcode' {} | grep -v Removing | cut -f1,2 | csvtk transpose -Ht | csvtk mutate2 -t -n condition -e \'{}\' --at 1" |
 	awk 'NR==1 || $0!~/barcode/' |
 	sed -e 's/barcode04_//g' -e 's/modkit_pileup//g' |
 	tsvtk pretty
+
+# Un coup de 'gather' et on peut faire un boxplot des colonnes du bedmethyl:
+tsvtk gather -f -coord -k Group -v data CUSTOM_hg38_episign/HG002_combined_methData_KAB.tsv.gz |
+	tsvtk plot box -g Group -f data --width 24 --height 8 -o HG002.png
