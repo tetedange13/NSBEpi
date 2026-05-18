@@ -9,12 +9,20 @@ methVal_to_methMatrix() {
 export -f methVal_to_methMatrix
 
 
-bed_to_methMatrix() {
-	awk -F"\t" '{print $1":"$2"-"$3"\t"$5}' "$1"
+OLD_bedMeth_to_methMatrix() {
+	# Old version using 'percent_mod' values
+        local inBEDm=$1
+        local cutOFF=$2
+        local sampleName=$(basename $inBEDm .bedmethyl.gz)
+        zcat $inBEDm |
+                awk -v thresh=$cutOFF -F"\t" '$4=="m" && $5>=5 && $11>=thresh {print $1":"$2"-"$3"\t"$11/100}' |
+                sed 's/^chr//' |
+                tsvtk add-header -n coord,$sampleName -o ${sampleName}_methMatrix.tsv.gz
 }
 export -f bed_to_methMatrix
 
 bedMeth_to_methMatrix() {
+	# NEW version setting '100%' as methyl value
 	local inBEDm=$1
 	local cutOFF=$2
 	local sampleName=$(basename $inBEDm .bedmethyl.gz)
