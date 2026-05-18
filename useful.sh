@@ -1,10 +1,12 @@
 set -uo pipefail
 
 
-add_col() {
-	awk -v OFS="\t" '{print $0,"NAME","100.00","+"}' "$1"
+methVal_to_methMatrix() {
+	# Takes a TSV as such 'Chr Pos methVal' and convert it to 'Chr:Pos methVal'
+	awk -v OFS="\t" '{print $1":"$2-1"-"$2,$3}' "$1" |
+		sed 's/^chr//'
 }
-export -f add_col
+export -f methVal_to_methMatrix
 
 
 bed_to_methMatrix() {
