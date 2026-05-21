@@ -10,7 +10,8 @@ set -euo pipefail  # Bast best pratice
 
 
 # 1) Use a modified version of './remove_extra_col.sh' to pre-process '.bedmethyl.gz'
-bash bed_processing_episignature_extraction/bedmethyl_processing/pipeline.sh input_bedmethyl "$1"
+cov_THRESHOLD=$1
+bash bed_processing_episignature_extraction/bedmethyl_processing/pipeline.sh input_bedmethyl "$cov_THRESHOLD"
 
 
 # 2) Extract episign for each bedmethyl (against all 'hg38_episignature_cordinates/*')
