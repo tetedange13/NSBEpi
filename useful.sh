@@ -1,6 +1,17 @@
 set -uo pipefail
 
 
+corrected_to_bedMeth(){
+	# Turn coord into BED + add fake columns to make a BEDmethyl (only 11 first cols)
+	local sampleName=$(basename "$1" .tsv)
+	awk 'NR>1 {print $1"\t"$2}' "$1" |
+		sed -e 's/:/\t/' -e 's/-/\t/' -e 's/^/chr/' |
+		awk -v OFS="\t" '{print $1,$2,$3,"m","10",".",$2,$3,"255,0,0","10",$4*100}' |
+		bedtools sort |
+	gzip -9 > ${sampleName}.bedmethyl.gz
+}
+
+
 methVal_to_methMatrix() {
 	# Takes a TSV as such 'Chr Pos methVal' and convert it to 'Chr:Pos methVal'
 	awk -v OFS="\t" '{print $1":"$2-1"-"$2,$3}' "$1" |
