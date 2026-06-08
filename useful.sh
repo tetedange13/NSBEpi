@@ -22,27 +22,27 @@ export -f methVal_to_methMatrix
 
 bedMeth_to_methMatrix() {
 	# Version using 'percent_mod' values
-        local inBEDm=$1
-        local cutOFF=$2
-        local sampleName=$(basename $inBEDm .bedmethyl.gz)
-        zcat $inBEDm |
-                awk -v thresh=$cutOFF -F"\t" '$4=="m" && $5>=0 && $11>=thresh {print $1":"$2"-"$3"\t"$11/100}' |
-                sed 's/^chr//' |
-                tsvtk add-header -n coord,$sampleName -o ${sampleName}_methMatrix.tsv.gz
+	local inBEDm=$1
+	local cutOFF=$2
+	local sampleName=$(basename $inBEDm .bedmethyl.gz)
+	zcat $inBEDm |
+		awk -v thresh=$cutOFF -F"\t" '$4=="m" && $5>=0 && $11>=thresh {print $1":"$2"-"$3"\t"$11/100}' |
+		sed 's/^chr//' |
+		tsvtk add-header -n coord,$sampleName -o ${sampleName}_methMatrix.tsv.gz
 }
-export -f bed_to_methMatrix
+export -f bedMeth_to_methMatrix
 
-bedMeth_to_methMatrix() {
+OLD_bedMeth_to_methMatrix() {
 	# Version setting '100%' as methyl value
 	local inBEDm=$1
 	local cutOFF=$2
 	local sampleName=$(basename $inBEDm .bedmethyl.gz)
 	zcat $inBEDm |
-        	awk -v thresh=$cutOFF -F"\t" '$4=="m" && $5>=0 && $11>=thresh {print $1":"$2"-"$3"\t100.00"}' |
-	        sed 's/^chr//' |
-        	tsvtk add-header -n coord,$sampleName -o ${sampleName}_methMatrix.tsv.gz
+		awk -v thresh=$cutOFF -F"\t" '$4=="m" && $5>=0 && $11>=thresh {print $1":"$2"-"$3"\t100.00"}' |
+		sed 's/^chr//' |
+		tsvtk add-header -n coord,$sampleName -o ${sampleName}_methMatrix.tsv.gz
 }
-export -f bedMeth_to_methMatrix
+export -f OLD_bedMeth_to_methMatrix
 
 
 bedMeth_to_methData() {
