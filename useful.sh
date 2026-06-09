@@ -26,7 +26,7 @@ bedMeth_to_methMatrix() {
 	local cutOFF=$2
 	local sampleName=$(basename $inBEDm .bedmethyl.gz)
 	zcat $inBEDm |
-		awk -v thresh=$cutOFF -F"\t" '$4=="m" && $5>=0 && $11>=thresh {print $1":"$2"-"$3"\t"$11/100}' |
+		awk -v thresh=$cutOFF -F"\t" '$4=="m" && $5>=0 && $11>=thresh {print $1":"$3"\t"$11/100}' |
 		sed 's/^chr//' |
 		tsvtk add-header -n coord,$sampleName -o ${sampleName}_methMatrix.tsv.gz
 }
