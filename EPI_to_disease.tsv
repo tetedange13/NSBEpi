@@ -1,0 +1,22 @@
+	Study ID	Age	Sex	Gene	Transcript	Variant	Syndrome	SVM classifier result	SV/SNV ranking
+0	EPI_01	12	F	KMT2D	NM_003482.4	c.8311C > T p.(Arg2771*)	Kabuki	Kabuki	1
+1	EPI_02	24	F	KMTD2	NM_003482.4	c.8304_8307del p.(Ser2768Argfs*18)	Kabuki	Kabuki	1
+2	EPI_03	7	M	NSD1	NM_022455.5	c.6188 T > C p.(Leu2063Pro)	Sotos	Sotos	1
+3	EPI_04	6	M	NSD1	NM_022455.5	c.3659_3660del p.(Glu1220Alafs*5)	Sotos	Sotos	1
+4	EPI_05	11	M	KMT2A	NM_001197104.2	c.6571C > T p.(Arg2191*)	Wiedemann-Steiner	Wiedemann-Steiner	1
+5	EPI_06	22	M	KMT2A	NM_001197104.2	c.10168C > T p.(Gln3390*)	Wiedemann-Steiner	Wiedemann-Steiner	1
+6	EPI_07	14	F	SMC3	NM_005445.4	c.720_722del p.(Asp240del)	Cornelia de Lange	Cornelia de Lange	3
+7	EPI_08	46	M	KMT2D	NM_003482.4	c.16517_16518del p.(Glu5506Glyfs*5)	Kabuki	Kabuki	1
+8	EPI_09	2	M	NSD1	NM_022455.5	c.4905C > G p.(Cys1635Trp)	Sotos	Sotos	1
+9	EPI_10	5	M	KMT2A	NM_001197104.2	c.3460C > T p.(Arg1154Trp)	Wiedemann-Steiner	Wiedemann-Steiner	1
+10	EPI_11	5	M	SMC3	NM_005445.4	c.2166_2167insCCCGAG p.(Glu722_Thr723insProGlu)	Cornelia de Lange	Cornelia de Lange	4
+11	EPI_12	13	F	SMARCA2	NM_003070.5	c.3476G > A p.(Arg1159Gln)	Nicolaides-Baraitser	Nicolaides-Baraitser	1
+12	EPI_13	15	F	PHF6	NM_001015877.2	c.306del p.(Tyr103Thrfs*40)	Börjeson-Forssman-Lehmann	control	1
+13	EPI_14	14	F	KANSL1	NM_015443.4	c.1419dup p.(Arg474Thrfs*3)	Koolen-De Vries	Koolen-De Vries	1
+14	EPI_15	2 months	M	EHMT1	NM_024757.5	c.3717-2A > G	Kleefstra	Kleefstra	2
+15	EPI_16	3	M			chr7:g.72900001_76430000del	Williams-Beuren	Williams Beuren	SV: 1
+16	EPI_17	4	M	EP300	NM_001429.4	g.41168065_41171580del	Rubinstein-Taybi	Rubinstein-Taybi	SV: 1
+17	EPI_18	3	M	ZNF711	NM_001330574.2	c.1361A > G p.(His454Arg)	MRX97?	control	4
+18	EPI_19	3	M	KMT2D	NM_003482.4	c.3002_3005del p.(Leu1001Profs*15)	Kabuki	Kabuki	Absent*
+19	EPI_19	3	M	ATRX	NM_000489.6	c.7263_7265del p.(Gln2425del)	ATRX?	Kabuki	XL: 1
+20	EPI_20	5	M	UBE2A	NM_003336.4	c.19C > T p.(Arg7Trp)	MRXSN	control	2
