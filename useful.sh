@@ -60,3 +60,11 @@ bedMeth_to_methData() {
 			-o ${sampleName}_methData.tsv.gz
 }
 export -f bedMeth_to_methData
+
+
+sign_to_methName() {
+	local inBED=$1
+	awk -F"\t" -v name=$(basename $inBED .bed) '{print $1":"$3"\t"name}' $inBED |
+		csvtk add-header -t -n coord,signName
+}
+export -f sign_to_methName
