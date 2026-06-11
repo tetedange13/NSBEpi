@@ -8,7 +8,7 @@ dependencies:
 - pip
 - jupyter
 - bedtools
-- parallel
+- parallel  # FELIX
 - pip:
   - pandas<3.0
   - openpyxl
@@ -16,3 +16,6 @@ dependencies:
   - scikit-learn==1.2.2
   - seaborn==0.12.2
   - scipy==1.9.3
+  - plotly  # FELIX
+  - combat  # FELIX
+  - fastcluster  # FELIX (for faster seaborn's ClusterMap())
