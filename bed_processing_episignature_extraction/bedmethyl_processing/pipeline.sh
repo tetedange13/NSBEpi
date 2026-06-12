@@ -45,5 +45,5 @@ done > preprocess_cmds.sh
 
 # Run in parallel:
 NB_JOBS=8
-parallel --jobs $NB_JOBS < preprocess_cmds.sh
+parallel --jobs $NB_JOBS --keep-order < preprocess_cmds.sh
 rm preprocess_cmds.sh

@@ -40,7 +40,7 @@ done > extract_episign_cmds.sh
 
 # Run in parallel:
 NB_JOBS=8
-parallel --jobs $NB_JOBS < extract_episign_cmds.sh
+parallel --jobs $NB_JOBS --keep-order < extract_episign_cmds.sh
 rm extract_episign_cmds.sh
 
 
