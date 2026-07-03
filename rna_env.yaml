@@ -1,0 +1,22 @@
+# run: conda env create --file environment.yml
+name: RNAseq
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+- python>=3.10
+- pip
+- jupyter
+- bedtools
+- parallel  # FELIX
+- pip:
+  - pandas<3.0
+  - openpyxl
+  - umap-learn==0.5.4
+  - scikit-learn==1.9.0
+  - seaborn==0.12.2
+  - scipy==1.18.0
+  - plotly  # FELIX
+  - combat  # FELIX
+  - fastcluster  # FELIX (for faster seaborn's ClusterMap())
+  - pydeseq2==0.5.4
