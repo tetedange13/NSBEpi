@@ -4,18 +4,18 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-- python>=3.10
+- python<3.12  # For umap
 - pip
 - jupyter
 - bedtools
 - parallel  # FELIX
+- umap-learn
 - pip:
   - pandas<3.0
   - openpyxl
-  - umap-learn==0.5.4
-  - scikit-learn==1.9.0
+#  - scikit-learn  # Installed by 'umap-learn'
   - seaborn==0.12.2
-  - scipy==1.18.0
+#  - scipy  # Installed by 'umap-learn'
   - plotly  # FELIX
   - combat  # FELIX
   - fastcluster  # FELIX (for faster seaborn's ClusterMap())
