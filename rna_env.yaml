@@ -4,12 +4,14 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-- python<3.12  # For umap
-- pip
-- jupyter
-- bedtools
-- parallel  # FELIX
-- umap-learn
+- conda-forge::python<3.12  # For umap
+- conda-forge::pip
+- conda-forge::jupyter
+- bioconda::bedtools
+- conda-forge::parallel  # FELIX
+- conda-forge::umap-learn
+- bioconda::trust4   # Immune (repertoire)
+#- bioconda::arcas-hla  # Immune (HLA) -> Incompatible (numpy)
 - pip:
   - pandas<3.0
   - openpyxl
