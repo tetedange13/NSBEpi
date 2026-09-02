@@ -9,6 +9,7 @@ dependencies:
 - conda-forge::jupyter
 - bioconda::bedtools
 - conda-forge::parallel  # FELIX
+- bioconda::pytximport
 - conda-forge::umap-learn
 - bioconda::trust4   # Immune (repertoire)
 #- bioconda::arcas-hla  # Immune (HLA) -> Incompatible (numpy)
