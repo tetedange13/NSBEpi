@@ -15,9 +15,10 @@ preprocess() {
     local output_path=$2
     local THRESHOLD=$3
     local outName=$(basename "$file" .bedmethyl.gz)
+    local allSignCoord=data/collapsed_coordinates_sorted_chr.bed
     echo "Removing extra cols from '$outName'..."
 
-    zcat "$file" |
+    bedtools intersect -wa -a "$file" -b "$allSignCoord" -sorted -g <(sed 's/^/chr/' GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta.fai) |
         awk -v thresh=$THRESHOLD -F"\t" '$4=="m" && $10>=thresh' |
         cut -f 1-11 |
         sed 's/^chr//' |
