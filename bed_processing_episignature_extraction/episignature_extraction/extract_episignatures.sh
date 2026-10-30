@@ -18,7 +18,7 @@ group2_path=preprocessed_bedmethyl
 
 # Creating the output folder if it doesn't exist
 output_folder="extracted_episign"
-mkdir -p "$output_folder"
+rm -rf "$output_folder" && mkdir "$output_folder"
 
 for file2 in "$group2_path"/*.bed.gz; do
 

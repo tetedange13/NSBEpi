@@ -37,7 +37,7 @@ fi
 
 input_path="$1"
 output_path=preprocessed_bedmethyl
-mkdir -p "$output_path"
+rm -rf "$output_path" && mkdir "$output_path"
 
 for file in "$input_path"/*.bedmethyl.gz; do
     echo preprocess "$file" "$output_path" "$threshold"
