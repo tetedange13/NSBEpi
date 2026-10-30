@@ -31,7 +31,7 @@ for file2 in "$group2_path"/*.bed.gz; do
         output_file="${output_folder}/${file1_basename}_${file2_basename}.bed"
 
         # Performing the intersection using bedtools
-        echo bedtools intersect -sorted -a "$file1" -b "$file2" -loj -wa -wb \> "$output_file"
+        echo bedtools intersect -sorted -g GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta.fai -a "$file1" -b "$file2" -loj -wa -wb \| bedtools sort \> "$output_file"
 
        	#echo "Intersection created: $output_file"
     done
